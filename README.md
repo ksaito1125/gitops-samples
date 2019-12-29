@@ -26,3 +26,8 @@ argocd app create $NAME \
 ```
 kubectl run nginx --image=nginx --restart=Never --dry-run -o yaml
 ```
+
+## 参考
+
+[Argo CD - Declarative GitOps CD for Kubernetes](https://argoproj.github.io/argo-cd/)
+[Argo CDによる継続的デリバリーのベストプラクティスとその実装](https://blog.cybozu.io/entry/2019/11/21/100000)
