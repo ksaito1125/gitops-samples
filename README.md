@@ -11,6 +11,8 @@ argocd login --insecure --username admin --password $(make pwd) $ARGOHOST:9090
 
 ## 設定
 
+### リリース
+
 ```
 NAME=nginx
 kubectl create namespace $NAME
@@ -20,6 +22,21 @@ argocd app create $NAME \
   --dest-server https://kubernetes.default.svc \
   --dest-namespace $NAME
 ```
+
+### ステージング
+
+```
+BRANCH=develop
+DEVNAME=$NAME-$BRANCH
+kubectl create namespace $DEVNAME
+argocd app create $DEVNAME \
+  --repo https://github.com/ksaito1125/gitops-samples.git \
+  --path $NAME \
+  --revision $BRANCH \
+  --dest-server https://kubernetes.default.svc \
+  --dest-namespace $DEVNAME
+```
+
 
 ## MEMO
 
